@@ -1,4 +1,10 @@
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+)$ index.php?route=$1 [QSA,L]
+#Verifica se esta disponivel a extensão rewrite_module
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d 
+	RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+#Evita que os diretorios sejam listados
+Options -Indexes
