@@ -1,6 +1,6 @@
 <?php
 
-abstract Controller {
+abstract class Controller {
 	
 	public function loadModel($name)
 	{

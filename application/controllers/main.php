@@ -8,20 +8,9 @@ class Main extends Controller {
 		$header['title'] 	= 'Apostila';
 		$main['welcome']   	= 'Bem Vindo';
 		
-		$this->loadView('header', 	$header);
-		$this->loadView('main', 	$main);
-		$this->loadView('footer');
-	}
-
-	function add()
-	{
-		
-		$header['title'] 	= 'Apostila';
-		$main['welcome']   	= 'ADicionar';
-		
-		$this->loadView('header', 	$header);
-		$this->loadView('main', 	$main);
-		$this->loadView('footer');
+		$this->loadView('layout/header', 	$header);
+		$this->loadView('main/index', 	$main);
+		$this->loadView('layout/footer');
 	}
 
 }

@@ -30,7 +30,7 @@ class Model {
 	
 	public function to_bool($val)
 	{
-			//EXPLICAR
+			//EXPLICAR $$val
 	    return !!$val;
 	}
 	
