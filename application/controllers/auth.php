@@ -13,8 +13,19 @@ class Auth extends Controller {
 		$this->loadView('layout/footer');
 	}
 	
-	function autenthicator{
-		$this->loadModel('auth');
+	function access(){
+		
+		$meumodel = $this->loadModel('users');
+		
+		$email = $_POST['email'];
+		$senha = $_POST['senha'];
+		
+		$result = $meumodel->GetAuth($email,$senha);
+		if(count($result)>0){
+			echo 'ACHOU alguem';
+		}else{
+			echo 'tente novamente, senha ou usuario incorreto';
+		}
 	}
 
 }
