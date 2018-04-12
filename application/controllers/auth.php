@@ -2,11 +2,11 @@
 
 class Auth extends Controller {
 
-	function index()
+	function login()
 	{
 		
 		$header['title'] 	= 'Apostila | Login';
-		$auth['login_text']   	= 'Login';
+		$auth['login_text'] = 'Login';
 		
 		$this->loadView('layout/header', 	$header);
 		$this->loadView('auth/index', 	$auth);
@@ -14,6 +14,7 @@ class Auth extends Controller {
 	}
 	
 	function access(){
+		global $config;
 		
 		$meumodel = $this->loadModel('users');
 		
@@ -21,8 +22,10 @@ class Auth extends Controller {
 		$senha = $_POST['senha'];
 		
 		$result = $meumodel->GetAuth($email,$senha);
+		print_r($result);
 		if(count($result)>0){
-			echo 'ACHOU alguem';
+			$_SESSION['auth'] = $result;
+			header('location: ' . $config['base_url'] . 'dashboard/index');
 		}else{
 			echo 'tente novamente, senha ou usuario incorreto';
 		}

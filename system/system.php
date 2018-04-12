@@ -24,6 +24,7 @@ class System
 			* Declara uma Váriavel Global
 			*/
 		global $route;
+		
 
 		/**
 			* Define controlador padrão
@@ -57,6 +58,8 @@ class System
 		}
 		
 		require_once MASKA_APP.'controllers/'.$this->controller.'.php';
+		
+		
 		$this->controller = new $this->controller;
 
 		if(isset($url[1]) && method_exists($this->controller, $url[1]))
@@ -65,7 +68,16 @@ class System
 
 		$this->parameters = $url ? array_values($url) : [];
 		
-		call_user_func_array([$this->controller, $this->method], $this->parameters);
+		$route['controller_atual'] = $this->controller;
+		$route['method_atual'] = $this->method;
+		
+		print_r($route);
+		die('brasil');
+		call_user_func_array(
+								[$this->controller, $this->method], 
+								$this->parameters
+							);
+																		
 	}
 
 	public function parseUrl($url)
