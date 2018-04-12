@@ -7,7 +7,8 @@ abstract class Controller {
 		global $route;
 		
 		print_r($route);
-		die('oi');
+		die('21');
+
 		$auth = $_SESSION['auth']['email'] ?? null;
 		
 		if(!$auth && !in_array( $route['controller_atual'].'/'.$route['method_atual'] , $config['whitelist']) ){

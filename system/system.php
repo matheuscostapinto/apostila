@@ -57,22 +57,21 @@ class System
 			unset($url[0]);
 		}
 		
+		$route['controller_atual'] = $this->controller;
+		
+		
 		require_once MASKA_APP.'controllers/'.$this->controller.'.php';
-		
-		
 		$this->controller = new $this->controller;
 
 		if(isset($url[1]) && method_exists($this->controller, $url[1]))
+		{
 			$this->method 		= $url[1];
+			$route['method_atual'] = $this->method;
+		}
 		unset($url[1]);
 
 		$this->parameters = $url ? array_values($url) : [];
 		
-		$route['controller_atual'] = $this->controller;
-		$route['method_atual'] = $this->method;
-		
-		print_r($route);
-		die('brasil');
 		call_user_func_array(
 								[$this->controller, $this->method], 
 								$this->parameters

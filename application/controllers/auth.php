@@ -22,7 +22,6 @@ class Auth extends Controller {
 		$senha = $_POST['senha'];
 		
 		$result = $meumodel->GetAuth($email,$senha);
-		print_r($result);
 		if(count($result)>0){
 			$_SESSION['auth'] = $result;
 			header('location: ' . $config['base_url'] . 'dashboard/index');
