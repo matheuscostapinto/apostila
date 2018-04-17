@@ -6,14 +6,13 @@ abstract class Controller {
 		global $config;
 		global $route;
 		
-		print_r($route);
-		die('21');
-
+		/*
 		$auth = $_SESSION['auth']['email'] ?? null;
 		
 		if(!$auth && !in_array( $route['controller_atual'].'/'.$route['method_atual'] , $config['whitelist']) ){
 			header('location: ' . $config['base_url'] . 'auth/login');
 		}
+		*/
 	}
 	
 	public function loadModel($name)

@@ -12,9 +12,4 @@ class Dashboard extends Controller {
 		$this->loadView('layout/footer');
 	}
 	
-	
-	
-	
-	
-	
 }

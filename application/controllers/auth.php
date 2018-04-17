@@ -2,7 +2,7 @@
 
 class Auth extends Controller {
 
-	function login()
+	function index()
 	{
 		
 		$header['title'] 	= 'Apostila | Login';
@@ -16,7 +16,7 @@ class Auth extends Controller {
 	function access(){
 		global $config;
 		
-		$meumodel = $this->loadModel('users');
+		$meumodel = $this->loadModel('usersModel');
 		
 		$email = $_POST['email'];
 		$senha = $_POST['senha'];
