@@ -1,7 +1,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th scope="col">#</th>
+			<th scope="col"><a href="users/add">Add</a></th>
 			<th scope="col">Nome</th>
 			<th scope="col">E-Mail</th>
 			<th scope="col">Ações</th>
