@@ -82,7 +82,9 @@ class Model
     }
 
     function create($table, $data) {
+		
         $fields = $this->filter($table, $data);
+			
 
         $sql = "INSERT INTO " . $table . " (" . implode($fields, ", ") . ") VALUES (:" . implode($fields, ", :") . ");";
 
@@ -113,6 +115,7 @@ class Model
 
     function update($table, $data, $where, $bind=array()) {
         $fields = $this->filter($table, $data);
+
         $fieldSize = sizeof($fields);
 
         $sql = "UPDATE " . $table . " SET ";
@@ -125,7 +128,7 @@ class Model
 
         foreach($fields as $field)
             $bind[":update_$field"] = $data[$field];
-        
+
         $result = $this->run($sql, $bind);
         return $result->rowCount();
     }
@@ -151,11 +154,13 @@ class Model
             $key = "column_name";
         }   
 
-        if(false !== ($list = $this->run($sql))) {
+		if(false !== ($list = $this->run($sql))) {
+			
             $fields = array();
-            foreach($list as $record)
+            foreach($list as $record){
                 $fields[] = $record[$key];
-            return array_values(array_intersect($fields, array_keys($data)));
+			}	
+			return array_values(array_intersect($fields, array_keys($data)));
         }
 
         return array();

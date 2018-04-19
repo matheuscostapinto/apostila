@@ -5,18 +5,16 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-	
       <li class="nav-item active">
         <a class="nav-link" href="users/index">Usuarios<span class="sr-only">(current)</span></a>
       </li>
-	  
       <li class="nav-item active">
         <a class="nav-link" href="#">Conteudo</a>
       </li>
 	</ul>
 	 <ul class="navbar-nav  my-2">
 		<li class="nav-item active">
-			<a class="nav-link" href="#">Sair</a>
+			<a class="nav-link" href="auth">Sair</a>
 		</li>
 	</ul>
   </div>

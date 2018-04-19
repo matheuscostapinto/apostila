@@ -1,7 +1,12 @@
+<?php if(isset($mensagem)){?>
+<div class="alert alert-<?php echo $tipoMensagem;?>" role="alert">
+	<?php echo $mensagem;?>
+</div>
+<?php } ?>
 <table class="table">
 	<thead>
 		<tr>
-			<th scope="col"><a href="users/add">Add</a></th>
+			<th scope="col"><a href="users/add" class="btn btn-primary">Add</a></th>
 			<th scope="col">Nome</th>
 			<th scope="col">E-Mail</th>
 			<th scope="col">Ações</th>
@@ -15,8 +20,8 @@
 					<td><?php echo $user['name'];?></td>
 					<td><?php echo $user['email']?></td>
 					<td>
-						<a href="users/edit/<?php echo $user['id']?>">Edit</a>
-						<a href="users/delete/<?php echo $user['id']?>">Delete</a>
+						<a href="users/edit/<?php echo $user['id']?>" class="btn btn-secondary">Edit</a>
+						<a href="users/delete/<?php echo $user['id']?>" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			<?php } ?>
