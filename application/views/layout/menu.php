@@ -9,7 +9,7 @@
         <a class="nav-link" href="users/index">Usuarios<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Conteudo</a>
+        <a class="nav-link" href="conteudo/index">Conteudo</a>
       </li>
 	</ul>
 	 <ul class="navbar-nav  my-2">

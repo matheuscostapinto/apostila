@@ -1,13 +1,14 @@
 <?php
 
-class Users extends Controller {
+class Conteudo extends Controller {
 
 	function index() {
 
 		$header['title'] = 'MASKA | USUARIOS';
 
-		$usersModel = $this->loadModel('UsersModel');
-		$data['users'] = $usersModel->getAll();
+		$userId = $_SESSION['auth'][0]['id'];
+		$ConteudoModel = $this->loadModel('ConteudoModel');
+		$data['users'] = $ConteudoModel->getAll($userId);
 		
 		if( !empty($_SESSION['mensagem'])){
 			$data['mensagem'] = $_SESSION['mensagem'];
@@ -17,7 +18,7 @@ class Users extends Controller {
 
 		$this->loadView('layout/header', $header);
 		$this->loadView('layout/menu');
-		$this->loadView('users/index', $data);
+		$this->loadView('conteudo/index', $data);
 		$this->loadView('layout/footer');
 	}
 	
@@ -26,18 +27,18 @@ class Users extends Controller {
 		$header['title'] = 'MASKA | INCLUIR USUARIO';
 		
 		if(isset($_POST['idConfirmar'])){
-			
-			$usersModel = $this->loadModel('UsersModel');
-			$retorno = $usersModel->SetCreate($_POST['idNome'],$_POST['idUsuario'],$_POST['idSenha']);
+			$userId = $_SESSION['auth'][0]['id'];
+			$usersModel = $this->loadModel('ConteudoModel');
+			$retorno = $usersModel->SetCreate($userId,$_POST['conteudo']);
 			
 			global $config;
-			header('location: '. $config['base_url'] .'/users/index');			
+			header('location: '. $config['base_url'] .'/conteudo/index');			
 			
 		}
 
 		$this->loadView('layout/header', $header);
 		$this->loadView('layout/menu');
-		$this->loadView('users/add');
+		$this->loadView('conteudo/add');
 		$this->loadView('layout/footer');
 
 	}
@@ -47,36 +48,28 @@ class Users extends Controller {
 		
 		$header['title'] = 'MASKA | ATUALIZAR USUARIO';
 		
-		$usersModel = $this->loadModel('UsersModel');
+		$usersModel = $this->loadModel('ConteudoModel');
 		
 		if(isset($_POST['idConfirmar']) && $_POST['idConfirmar'] != null ){
-			$atualizar = null;
-			if(isset($_POST['idSenha'])){
-				$atualizar = $usersModel->SetUpdate($id,$_POST['idNome'],$_POST['idUsuario'],$_POST['idSenha']);
-			}else{
-				$atualizar = $usersModel->SetUpdate($id,$_POST['idNome'],$_POST['idUsuario']);
-			}
 			
-			$data['name'] = $_POST['idNome'];
-			$data['email'] = $_POST['idUsuario'];
-			$data['password'] = $_POST['idSenha'];
+			$atualizar = $usersModel->SetUpdate($id,$_POST['conteudo']);
+			
+			$data['conteudo'] = $_POST['conteudo'];
 			
 			global $config;
-			header('location: '. $config['base_url'] .'/users/index');
+			header('location: '. $config['base_url'] .'/conteudo/index');
 			
 			
 		} else{
-			
 			$result = $usersModel->getById($id);
 			if(count($result)){
 				$data= $result[0];
-				unset($data['password']);
 			}
 		}
 
 		$this->loadView('layout/header', $header);
 		$this->loadView('layout/menu');
-		$this->loadView('users/edit', $data);
+		$this->loadView('conteudo/edit', $data);
 		$this->loadView('layout/footer');
 
 	}
@@ -87,7 +80,7 @@ class Users extends Controller {
 
 		if(isset($_POST['idConfirmar']) && $_POST['idConfirmar'] != null ){
 
-			$usersModel = $this->loadModel('UsersModel');
+			$usersModel = $this->loadModel('ConteudoModel');
 			$retorno = $usersModel->SetDelete($id);
 			if(count($retorno)){
 				$_SESSION['mensagem'] = 'Apagado registro '.$id;
@@ -98,14 +91,14 @@ class Users extends Controller {
 			}
 
 			global $config;
-			header('location: '. $config['base_url'] .'/users/index');
+			header('location: '. $config['base_url'] .'/conteudo/index');
 		}else{
 			$data['id'] = $id;
 		}
 		
 		$this->loadView('layout/header', $header);
 		$this->loadView('layout/menu');
-		$this->loadView('users/delete',$data);
+		$this->loadView('conteudo/delete',$data);
 		$this->loadView('layout/footer');
 		
 	}
